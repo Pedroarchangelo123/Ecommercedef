@@ -27,4 +27,14 @@ public class ProdutoService {
 		Page<Produto> result = repo.findAll(pagina);
 		return result.map(x -> new ProdutoDTO(x));
 	}
+
+	public ProdutoDTO createProduto(ProdutoDTO produtoDTO) {
+        Produto produto = new Produto();
+        produto.setNome(produtoDTO.getNome());
+        produto.setPreco(produtoDTO.getPreco());
+
+        Produto produtoSalvo = repo.save(produto);
+
+        return new ProdutoDTO(produtoSalvo);
+    }
 }
