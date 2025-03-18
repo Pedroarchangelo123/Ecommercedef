@@ -22,6 +22,8 @@ public class Categoria {
 	@ManyToMany(mappedBy = "categorias")
 	private Set<Produto> produtos = new HashSet<>();
 	
+	
+	
 	public Categoria() {
 		
 	}
