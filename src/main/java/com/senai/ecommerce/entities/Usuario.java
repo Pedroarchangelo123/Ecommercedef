@@ -29,13 +29,19 @@ public class Usuario {
 
 	}
 
-	public Usuario(Long id, String nome, String email, String telefone, String senha) {
+
+
+	public Usuario(Long id, String nome, String email, String telefone, String senha, List<Pedido> pedidos) {
+
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
 		this.senha = senha;
+		this.pedidos = pedidos;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -71,6 +77,14 @@ public class Usuario {
 
 	public String getSenha() {
 		return senha;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	public void setSenha(String senha) {

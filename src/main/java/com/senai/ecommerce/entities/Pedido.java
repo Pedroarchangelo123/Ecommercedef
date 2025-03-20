@@ -40,10 +40,37 @@ public class Pedido {
 
 	}
 
-	public Pedido(Long id, Instant momento, StatusDoPedido status) {
+
+	public Pedido(Long id, Instant momento, StatusDoPedido status, Usuario cliente, Pagamento pagamento,
+			Set<ItemDoPedido> items) {
+		super();
 		this.id = id;
 		this.momento = momento;
 		this.status = status;
+		this.cliente = cliente;
+		this.pagamento = pagamento;
+		this.items = items;
+	}
+
+
+	public Usuario getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Usuario cliente) {
+		this.cliente = cliente;
+	}
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+	public void setItems(Set<ItemDoPedido> items) {
+		this.items = items;
 	}
 
 	public Long getId() {
