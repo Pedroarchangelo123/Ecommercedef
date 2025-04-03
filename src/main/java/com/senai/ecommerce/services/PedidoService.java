@@ -1,5 +1,34 @@
 package com.senai.ecommerce.services;
 
-public class PedidoService {
+import java.time.Instant;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.senai.ecommerce.dto.PedidoDTO;
+import com.senai.ecommerce.entities.Pedido;
+import com.senai.ecommerce.entities.StatusDoPedido;
+import com.senai.ecommerce.entities.Usuario;
+import com.senai.ecommerce.repositories.PedidoRepository;
+import com.senai.ecommerce.repositories.UsuarioRepository;
+
+@Service
+public class PedidoService {
+ @Autowired
+ private PedidoRepository pedidoRepository;
+ @Autowired
+ private UsuarioRepository usuarioRepository;
+ 
+ public PedidoDTO criarPedido(PedidoDTO pedidoDto) {
+	 Pedido pedido = new Pedido();
+	 pedido.setMomento(Instant.now());
+	 pedido.setStatus(StatusDoPedido.AGUARDANDO_PAGAMENTO);
+	 Usuario usuario = usuarioRepository.getReferenceById(pedidoDto.getClienteID());
+
+	 pedido.setCliente(usuario);
+	 pedido = pedidoRepository.save(pedido);
+	 
+	 return new PedidoDTO(pedido);
+
+ }
 }
