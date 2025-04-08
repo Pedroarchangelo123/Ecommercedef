@@ -2,6 +2,7 @@ package com.senai.ecommerce.dto;
 
 import java.time.Instant;
 
+
 import com.senai.ecommerce.entities.Pedido;
 import com.senai.ecommerce.entities.StatusDoPedido;
 
@@ -51,6 +52,4 @@ public class PedidoDTO {
 	public void setClienteID(Long clienteID) {
 		this.clienteID = clienteID;
 	}
-
 }
-

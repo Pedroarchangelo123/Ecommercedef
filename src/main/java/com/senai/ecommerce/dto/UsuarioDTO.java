@@ -5,6 +5,11 @@ import java.util.stream.Collectors;
 
 import com.senai.ecommerce.entities.Usuario;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.senai.ecommerce.entities.Usuario;
+
 public class UsuarioDTO {
 	private Long id;
 	private String nome;
@@ -12,6 +17,7 @@ public class UsuarioDTO {
 	private String telefone;
 	private String senha;
 	private List<PedidoDTO> pedidos;
+
 	
 	public UsuarioDTO() {
 
@@ -96,11 +102,9 @@ public class UsuarioDTO {
 	email = usuario.getEmail();
 	telefone = usuario.getTelefone();
 	senha = usuario.getSenha();
-	pedidos = usuario.getPedidos().stream()
-				.map(PedidoDTO::new	)
-				.collect(Collectors.toList());
-	}
+	pedidos = usuario.getPedidos();
+
 
 
 }
-
+}
