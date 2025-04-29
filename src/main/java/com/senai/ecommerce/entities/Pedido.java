@@ -24,26 +24,6 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Instant momento;
-	public Usuario getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Usuario cliente) {
-		this.cliente = cliente;
-	}
-
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
-
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
-	}
-
-	public void setItems(Set<ItemDoPedido> items) {
-		this.items = items;
-	}
-
 	private StatusDoPedido status;
 
 	@ManyToOne
@@ -60,16 +40,10 @@ public class Pedido {
 
 	}
 
-
-	public Pedido(Long id, Instant momento, StatusDoPedido status, Usuario cliente, Pagamento pagamento,
-			Set<ItemDoPedido> items) {
-		super();
+	public Pedido(Long id, Instant momento, StatusDoPedido status) {
 		this.id = id;
 		this.momento = momento;
 		this.status = status;
-		this.cliente = cliente;
-		this.pagamento = pagamento;
-		this.items = items;
 	}
 
 	public Long getId() {
@@ -104,5 +78,14 @@ public class Pedido {
 		
 		return items.stream().map(x -> x.getProduto()).toList();
 	}
+
+	public Usuario getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Usuario cliente) {
+		this.cliente = cliente;
+	}
+
 
 }

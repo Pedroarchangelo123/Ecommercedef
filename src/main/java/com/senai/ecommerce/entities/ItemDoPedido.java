@@ -13,7 +13,7 @@ public class ItemDoPedido {
 	
 	private Integer quantidade;
 	private Double preco;
-	
+	private String nome;
 	public ItemDoPedido() {
 		
 	}

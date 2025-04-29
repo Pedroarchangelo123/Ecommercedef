@@ -23,23 +23,19 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	
 	@Column(columnDefinition = "TEXT")
 	private String descricao;
 	private Double preco;
+	
 	@Column(columnDefinition = "TEXT")
 	private String imgUrl;
 
 	@ManyToMany
-	@JoinTable(name = "tb_produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	@JoinTable(name = "tb_produto_categoria", 
+	joinColumns = @JoinColumn(name = "produto_id"), 
+	inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<>();
-
-	public Set<Categoria> getCategorias() {
-		return categorias;
-	}
-
-	public void setCategorias(Set<Categoria> categorias) {
-		this.categorias = categorias;
-	}
 
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemDoPedido> items = new HashSet<>();
@@ -104,5 +100,14 @@ public class Produto {
 
 		return items.stream().map(x -> x.getPedido()).toList();
 	}
+	
+	public Set<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Set<Categoria> categorias) {
+		this.categorias = categorias;
+	}
 
 }
+

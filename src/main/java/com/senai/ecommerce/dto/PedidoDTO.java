@@ -1,8 +1,10 @@
 package com.senai.ecommerce.dto;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
-
+import com.senai.ecommerce.entities.ItemDoPedido;
 import com.senai.ecommerce.entities.Pedido;
 import com.senai.ecommerce.entities.StatusDoPedido;
 
@@ -11,13 +13,23 @@ public class PedidoDTO {
 	private Instant momento;
 	private StatusDoPedido status;
 	private Long clienteID;
+	
+	private List<ItemDoPedidoDTO> items = new ArrayList<>();
+	
 	public PedidoDTO(Pedido pedido) {
-		this.id= pedido.getId();
-		this.momento=pedido.getMomento();
-		this.status= pedido.getStatus();	
-		this.clienteID= pedido.getCliente().getId();
+		id= pedido.getId();
+		momento=pedido.getMomento();
+		status= pedido.getStatus();	
+		clienteID= pedido.getCliente().getId();
+		for (ItemDoPedido item : pedido.getItems()) {
+			items.add(new ItemDoPedidoDTO());
+
+		}
 	
 }
+	public List<ItemDoPedidoDTO> getItems() {
+		return items;
+	}
 	
 	public PedidoDTO() {
 

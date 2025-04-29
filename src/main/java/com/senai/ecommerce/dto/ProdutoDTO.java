@@ -13,7 +13,7 @@ private String descricao;
 private Double preco;
 private String imgUrl;
 
-private List<CategoriaDTO> categorias = new ArrayList<>();
+private List<CategoriaDTO> categorias = new ArrayList<>(); //Lista de categorias do produto
 public ProdutoDTO() {
 
 }
@@ -31,15 +31,15 @@ public ProdutoDTO(Produto p) {
     descricao = p.getDescricao();
 	preco = p.getPreco();
 	imgUrl = p.getImgUrl();
-	for (Categoria cat : p.getCategorias()) {
-		categorias.add(new CategoriaDTO(cat));
+	for (Categoria cat : p.getCategorias()) {	//A cada categoria do produto é transformada em DTO
+		categorias.add(new CategoriaDTO(cat)); //Evitando o loop infinito
 	}
 		
 }
 
 
 public List<CategoriaDTO> getCategorias() {
-	return categorias;
+	return categorias;  //Retorna a lista de categorias do produto
 }
 public void setCategorias(List<CategoriaDTO> categorias) {
 	this.categorias = categorias;

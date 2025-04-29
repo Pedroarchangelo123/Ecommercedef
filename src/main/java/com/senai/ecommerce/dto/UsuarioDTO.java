@@ -102,7 +102,6 @@ public class UsuarioDTO {
 	email = usuario.getEmail();
 	telefone = usuario.getTelefone();
 	senha = usuario.getSenha();
-	pedidos = usuario.getPedidos();
 
 
 
