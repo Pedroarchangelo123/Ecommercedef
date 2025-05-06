@@ -33,8 +33,8 @@ public class Pedido {
 	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private Pagamento pagamento;
 	
-	@OneToMany(mappedBy = "id.pedido")
-	private Set< ItemDoPedido > items = new HashSet<>();
+	@OneToMany(mappedBy = "id.pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ItemDoPedido> items = new java.util.ArrayList<>();
 	
 	public Pedido() {
 
@@ -70,8 +70,21 @@ public class Pedido {
 		this.status = status;
 	}
 	
-	public Set<ItemDoPedido> getItems() {
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+	public List<ItemDoPedido> getItems() {
 		return items;
+	}
+
+	public void setItems(List<ItemDoPedido> items) {
+		this.items = items;
 	}
 
 	public List<Produto> getProduto(){

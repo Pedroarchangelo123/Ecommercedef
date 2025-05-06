@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.senai.ecommerce.entities.ItemDoPedido;
 import com.senai.ecommerce.entities.Pedido;
 import com.senai.ecommerce.entities.StatusDoPedido;
@@ -12,6 +13,7 @@ public class PedidoDTO {
 	private Long id;
 	private Instant momento;
 	private StatusDoPedido status;
+	@JsonProperty("clienteId")
 	private Long clienteID;
 	
 	private List<ItemDoPedidoDTO> items = new ArrayList<>();
@@ -21,12 +23,17 @@ public class PedidoDTO {
 		momento=pedido.getMomento();
 		status= pedido.getStatus();	
 		clienteID= pedido.getCliente().getId();
+		
 		for (ItemDoPedido item : pedido.getItems()) {
-			items.add(new ItemDoPedidoDTO());
+			ItemDoPedidoDTO itemDto = new ItemDoPedidoDTO(item);
+			items.add(itemDto);
 
 		}
 	
 }
+	public void setItems(List<ItemDoPedidoDTO> items) {
+		this.items = items;
+	}
 	public List<ItemDoPedidoDTO> getItems() {
 		return items;
 	}
