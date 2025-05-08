@@ -32,6 +32,7 @@ public class PedidoService {
 	private ItemDoPedidoRepository itemDoPedidoRepository;
 
 	@Transactional
+	
 	public PedidoDTO inserir(PedidoDTO pedidoDto) {
 		Pedido pedido = new Pedido();
 		pedido.setMomento(Instant.now());

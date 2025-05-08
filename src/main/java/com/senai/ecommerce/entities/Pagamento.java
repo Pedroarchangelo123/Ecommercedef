@@ -14,6 +14,14 @@ import jakarta.persistence.Table;
 @Table(name = "tb_pagamento")
 public class Pagamento {
 
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,6 +38,7 @@ public class Pagamento {
 	public Pagamento(Long id, Instant momento) {
 		this.id = id;
 		this.momento = momento;
+		
 	}
 
 	public Long getId() {

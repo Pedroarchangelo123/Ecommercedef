@@ -5,13 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.senai.ecommerce.dto.LoginDTO;
 import com.senai.ecommerce.dto.UsuarioDTO;
 import com.senai.ecommerce.services.LoginService;
 
 import jakarta.validation.Valid;
-
+@RestController
+@RequestMapping(value = "/usuario")
 public class UsuarioController {
 	@Autowired 
 	LoginService loginService;
