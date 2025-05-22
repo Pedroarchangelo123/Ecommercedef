@@ -1,20 +1,28 @@
 package com.senai.ecommerce.entities;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import com.senai.ecommerce.dto.PedidoDTO;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_usuario")
-public class Usuario {
+public class Usuario implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +31,25 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	private String senha;
-	
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+
 	@OneToMany(mappedBy= "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 
-
+	@ManyToMany
+	@JoinTable(name = "tb_usuario_role",
+	joinColumns = @JoinColumn(name = "usuario_id"), 
+	inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>(); //O set é usado para não permitir duplicidade de roles
 	public Usuario() {
 
 	}
@@ -91,6 +113,24 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles;
+	}
+
+
+	@Override
+	public String getPassword() {
+		return null;
+	}
+
+
+	@Override
+	public String getUsername() {
+		return email;
 	}
 
 }
